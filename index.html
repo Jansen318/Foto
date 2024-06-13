@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buat Dokumen Foto</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      h1 {
+        font-size: 24px;
+      }
+      form {
+        margin-top: 20px;
+      }
+      input[type="file"],
+      input[type="text"] {
+        margin-bottom: 20px;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Buat Dokumen Foto Otomatis</h1>
+    <form
+      id="photoForm"
+      method="post"
+      enctype="multipart/form-data"
+      action="/create-doc"
+    >
+      <label for="title">Judul:</label>
+      <input type="text" id="title" name="title" required /><br />
+      <label for="files">Pilih Foto:</label>
+      <input
+        type="file"
+        id="files"
+        name="files"
+        accept="image/*"
+        multiple
+        required
+      /><br /><br />
+      <button type="submit">Buat Dokumen</button>
+    </form>
+  </body>
+</html>
