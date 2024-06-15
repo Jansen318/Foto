@@ -4,6 +4,8 @@ from docx import Document
 from docx.shared import Pt, Cm, Inches
 from PIL import Image
 import io
+import os
+from datetime import datetime
 
 app = Flask(__name__)
 CORS(app)
@@ -14,7 +16,10 @@ def index():
 
 @app.route('/create-doc', methods=['POST'])
 def create_doc():
-    files = sorted(request.files.getlist('files'), key=lambda f: f.filename)
+    # Get files and sort by last modified date in descending order
+    files = request.files.getlist('files')
+    files.sort(key=lambda f: datetime.fromtimestamp(os.fstat(f.stream.fileno()).st_mtime), reverse=True)
+
     title = request.form.get('title')
 
     doc = Document()
